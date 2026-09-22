@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Menfess &amp; Song Wall</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📼</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ============ AUTH SCREEN ============ -->
+<div id="authScreen" class="auth-screen">
+  <div class="auth-bg-reel r1"></div>
+  <div class="auth-bg-reel r2"></div>
+
+  <div class="auth-card">
+    <div class="auth-brand">
+      <div class="brand-cassette">
+        <div class="cassette-reel"></div>
+        <div class="cassette-reel"></div>
+      </div>
+      <h1>Menfess &amp; Song Wall</h1>
+      <p>Kirim pesan diam-diam, tinggalkan lagunya.</p>
+    </div>
+
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-tab="login" type="button">Masuk</button>
+      <button class="auth-tab" data-tab="register" type="button">Daftar</button>
+    </div>
+
+    <form id="loginForm" class="auth-form">
+      <label>Nama
+        <input type="text" id="loginUsername" autocomplete="username" required maxlength="40" />
+      </label>
+      <label>Kata Sandi
+        <input type="password" id="loginPassword" autocomplete="current-password" required maxlength="60" />
+      </label>
+      <button type="submit" class="btn-primary">
+        <span class="btn-label">Masuk</span>
+        <span class="btn-spinner" hidden></span>
+      </button>
+    </form>
+
+    <form id="registerForm" class="auth-form" hidden>
+      <label>Nama
+        <input type="text" id="registerUsername" autocomplete="username" required maxlength="40" />
+      </label>
+      <label>Buat Kata Sandi
+        <input type="password" id="registerPassword" autocomplete="new-password" required minlength="4" maxlength="60" />
+      </label>
+      <button type="submit" class="btn-primary">
+        <span class="btn-label">Buat Akun</span>
+        <span class="btn-spinner" hidden></span>
+      </button>
+    </form>
+
+    <p id="authMessage" class="auth-message" hidden></p>
+  </div>
+</div>
+
+<!-- ============ APP SCREEN ============ -->
+<div id="appScreen" class="app-screen" hidden>
+
+  <aside class="sidebar">
+    <div class="sidebar-logo" title="Menfess & Song Wall">📼</div>
+    <nav class="sidebar-nav">
+      <button class="nav-btn active" data-view="wall" title="Song Wall">
+        <span class="nav-icon">🏠</span><span class="nav-label">Wall</span>
+      </button>
+      <button class="nav-btn" data-view="submit" title="Kirim Menfess">
+        <span class="nav-icon">✍️</span><span class="nav-label">Kirim</span>
+      </button>
+      <button class="nav-btn" data-view="game" title="Mini Game">
+        <span class="nav-icon">🎮</span><span class="nav-label">Game</span>
+      </button>
+    </nav>
+    <div class="sidebar-bottom">
+      <button id="themeToggle" class="icon-btn" title="Ganti tema">🌙</button>
+      <button id="logoutBtn" class="icon-btn" title="Keluar">⎋</button>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <h1 id="viewTitle">Song Wall</h1>
+      <div class="user-chip">
+        <span class="user-dot"></span>
+        <span id="currentUserName">-</span>
+      </div>
+    </header>
+
+    <!-- WALL VIEW -->
+    <section id="view-wall" class="view active">
+      <div class="wall-toolbar">
+        <input type="search" id="searchInput" placeholder="Cari nama, kelas, atau isi pesan..." />
+        <button id="refreshWall" class="btn-ghost" title="Muat ulang">↻</button>
+      </div>
+      <div id="wallLoading" class="wall-loading">Memuat menfess...</div>
+      <div id="cardsGrid" class="cards-grid" hidden></div>
+      <div id="emptyState" class="empty-state" hidden>
+        <p>Dinding masih sepi. Jadilah yang pertama kirim menfess 🎵</p>
+      </div>
+    </section>
+
+    <!-- SUBMIT VIEW -->
+    <section id="view-submit" class="view">
+      <form id="menfessForm" class="menfess-form">
+        <div class="form-row anonim-row">
+          <label class="checkbox-row">
+            <input type="checkbox" id="isAnonim" />
+            <span>Kirim sebagai anonim</span>
+          </label>
+        </div>
+        <label id="senderNameWrap">Nama Kamu
+          <input type="text" id="senderName" maxlength="40" placeholder="cth. Anak XI-F2" />
+        </label>
+        <label>Untuk Siapa?
+          <input type="text" id="recipient" required maxlength="60" placeholder="cth. Si Rambut Ikal XI-A1" />
+        </label>
+        <label>Pesan
+          <textarea id="message" required maxlength="400" rows="4" placeholder="Tulis pesannya di sini..."></textarea>
+        </label>
+        <label>Link Lagu Spotify
+          <input type="url" id="spotifyLink" required placeholder="https://open.spotify.com/track/..." />
+        </label>
+        <button type="submit" class="btn-primary">
+          <span class="btn-label">Kirim Menfess</span>
+          <span class="btn-spinner" hidden></span>
+        </button>
+      </form>
+    </section>
+
+    <!-- GAME VIEW -->
+    <section id="view-game" class="view">
+      <div class="game-wrap">
+        <div class="game-stats">
+          <div><span class="stat-label">Langkah</span><span id="gameMoves">0</span></div>
+          <div><span class="stat-label">Waktu</span><span id="gameTime">0s</span></div>
+          <div><span class="stat-label">Rekor</span><span id="gameBest">-</span></div>
+        </div>
+        <div id="gameGrid" class="game-grid"></div>
+        <button id="gameRestart" class="btn-ghost">Kocok Ulang</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- NOW PLAYING BAR -->
+  <div id="nowPlaying" class="now-playing" hidden>
+    <div class="np-main">
+      <div class="np-info">
+        <div class="np-label">Sedang diputar untuk</div>
+        <strong id="npTitle">-</strong>
+      </div>
+      <div id="npEmbed" class="np-embed"></div>
+    </div>
+    <button id="npClose" class="icon-btn" title="Tutup">✕</button>
+  </div>
+</div>
+
+<div id="toast" class="toast" hidden></div>
+
+<script src="app.js"></script>
+</body>
+</html>
