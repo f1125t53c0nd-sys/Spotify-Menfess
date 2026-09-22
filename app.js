@@ -1,7 +1,7 @@
 /* =========================================================
    CONFIG — paste your deployed Apps Script Web App URL here
    ========================================================= */
-const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbx8fk3GpUPZxghA-mVt68ZjxmkTjE9R0qYva2jDzNzRFpGbIYEtgYvzTyNXZfT-hFgRig/exec';
+const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwTsjKTR0kuj5ffy81MhSO10_IZz1ewe5sdV4GAMQYCv86Ze7pyjKLV59umg8XY-60Isg/exec';
 
 const STORAGE_USER_KEY = 'menfess_user';
 const STORAGE_THEME_KEY = 'menfess_theme';
